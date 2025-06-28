@@ -1,14 +1,69 @@
-/* grid & card layout on the landing page */
-body{font-family:sans-serif;padding:20px;text-align:center}
-.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px;margin-top:20px}
-.card{padding:20px;background:#e0e0e0;border-radius:8px;font-size:1.5em;
-      text-decoration:none;color:#333;transition:background .3s}
-.card:hover{background:#c0c0c0}
+/* ---------- General layout ---------- */
+body{
+  font-family:sans-serif;
+  padding:40px 20px 20px;   /* 40 px top pad prevents top-edge clipping */
+  text-align:center;
+}
 
-/* hover-reveal tooltip used on each reflection page */
-.tooltip-container{position:relative;display:inline-block;margin-top:30px}
-.tooltip-text{visibility:hidden;opacity:0;transition:opacity .3s;
-              position:absolute;bottom:100%;left:50%;transform:translateX(-50%);
-              background:rgba(0,0,0,.85);color:#fff;padding:10px;border-radius:5px;
-              max-width:260px;white-space:pre-wrap}
-.tooltip-container:hover .tooltip-text{visibility:visible;opacity:1}
+/* ---------- Landing-page grid ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:15px;
+  margin-top:20px;
+}
+.card{
+  padding:20px;
+  background:#e0e0e0;
+  border-radius:8px;
+  font-size:1.5em;
+  text-decoration:none;
+  color:#333;
+  transition:background .3s;
+}
+.card:hover{
+  background:#c0c0c0;
+}
+
+/* ---------- Tooltip (hover-reveal) ---------- */
+.tooltip-container{
+  position:relative;
+  display:inline-block;
+  margin-top:30px;
+}
+
+/* hidden text box */
+.tooltip-text{
+  visibility:hidden;
+  opacity:0;
+  transition:opacity .3s;
+  position:absolute;
+  bottom:100%;              /* default: sit ABOVE the trigger */
+  left:50%;
+  transform:translateX(-50%) translateY(-5px);
+  background:rgba(0,0,0,.85);
+  color:#fff;
+  padding:10px;
+  border-radius:5px;
+  max-width:260px;
+  white-space:pre-wrap;
+}
+
+/* show on hover */
+.tooltip-container:hover .tooltip-text{
+  visibility:visible;
+  opacity:1;
+  transform:translateX(-50%) translateY(-10px);
+}
+
+/* ---------- Flip tooltip below if it would clip off-screen ---------- */
+/* On hover, switch to below the trigger while keeping same centering */
+.tooltip-container:hover .tooltip-text:after{content:"";} /* Safari fix */
+@media (max-height:9000px){   /* always true; keeps rule in styles.css */
+  .tooltip-container:hover .tooltip-text{
+    /* JS-free fallback: use top instead of bottom */
+    top:100%;                 /* place BELOW */
+    bottom:auto;
+    transform:translateX(-50%) translateY(10px);
+  }
+}
