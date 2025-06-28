@@ -1,0 +1,14 @@
+/* grid & card layout on the landing page */
+body{font-family:sans-serif;padding:20px;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:15px;margin-top:20px}
+.card{padding:20px;background:#e0e0e0;border-radius:8px;font-size:1.5em;
+      text-decoration:none;color:#333;transition:background .3s}
+.card:hover{background:#c0c0c0}
+
+/* hover-reveal tooltip used on each reflection page */
+.tooltip-container{position:relative;display:inline-block;margin-top:30px}
+.tooltip-text{visibility:hidden;opacity:0;transition:opacity .3s;
+              position:absolute;bottom:100%;left:50%;transform:translateX(-50%);
+              background:rgba(0,0,0,.85);color:#fff;padding:10px;border-radius:5px;
+              max-width:260px;white-space:pre-wrap}
+.tooltip-container:hover .tooltip-text{visibility:visible;opacity:1}
